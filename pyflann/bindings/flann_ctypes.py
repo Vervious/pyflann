@@ -1,5 +1,7 @@
 # Copyright 2008-2009  Marius Muja (mariusm@cs.ubc.ca). All rights reserved.
 # Copyright 2008-2009  David G. Lowe (lowe@cs.ubc.ca). All rights reserved.
+# Modified 2017 Benjamin Chan (benchan@mit.edu), respecting changes made
+# by Abram Hindle (abram.hindle@ualberta.ca) in 2013.
 #
 # THE BSD LICENSE
 #
@@ -211,6 +213,21 @@ flannlib.flann_build_index_%(C)s.argtypes = [
         POINTER(FLANNParameters)  # flann_params
 ]
 flann.build_index[%(numpy)s] = flannlib.flann_build_index_%(C)s
+""")
+
+# See https://github.com/mariusmuja/flann/pull/93/commits/468d290bfc461cbc00361d1b4aa4749d81152a6b
+# for source.
+flann.add_points = {}
+define_functions(r"""
+flannlib.flann_add_points_%(C)s.restype = None
+flannlib.flann_add_points_%(C)s.argtypes = [ 
+        FLANN_INDEX, # index_id
+        ndpointer(%(numpy)s, ndim = 2, flags='aligned, c_contiguous'), # dataset
+        c_int, # rows
+        c_int, # cols
+        c_int, # rebuild_threshhold
+]
+flann.add_points[%(numpy)s] = flannlib.flann_add_points_%(C)s
 """)
 
 flann.save_index = {}

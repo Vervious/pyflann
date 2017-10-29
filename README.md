@@ -1,6 +1,10 @@
 pyflann
 =============
 
+###0. Notes
+
+See the original repo (pyflann and flann) for the main code. This fork only adds addPoint bindings while the main repositories work on it.
+
 ###1. Introduction
 
 pyflann is the python bindings for [FLANN - Fast Library for Approximate Nearest Neighbors](http://www.cs.ubc.ca/research/flann/).
@@ -11,14 +15,9 @@ pyflann is the python bindings for [FLANN - Fast Library for Approximate Nearest
 
 This package uses distutils, which is the default way of installing python modules. To install in your home directory, securely run the following:
 ```
-git clone https://github.com/primetang/pyflann.git
+git clone https://github.com/vervious/pyflann.git
 cd pyflann
 [sudo] python setup.py install
-```
-
-Or directly through `pip` to install it:
-```
-[sudo] pip install pyflann
 ```
 
 #### For python3
